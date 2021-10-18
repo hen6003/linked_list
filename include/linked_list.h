@@ -1,3 +1,6 @@
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
 #include <malloc.h>
 
 //=== Definitions ===
@@ -111,3 +114,4 @@ void free_item_index(item *head, int index)
 	// Free the unlinked item
 	free_item(i);
 }
+#endif // LINKED_LIST_H 
