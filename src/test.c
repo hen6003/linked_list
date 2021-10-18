@@ -7,11 +7,24 @@ int main(void)
 	head = create_head();
 
 	insert_item(head, "hello");
-	insert_item(head, "test");
+	insert_item(head, "world");
+	insert_item(head, "this");
+	insert_item(head, "working?");
 
-	char *p = get_data(head, 3);
+	free_item_index(head, 3);
 
-	printf("%s\n", p);
+	item *last = head;
+	while (last->next != NULL)
+	{
+		last = last->next;
+		printf("%s\n", (char *) last->data);
+	}
+	
+	while (last->prev != NULL)
+	{
+		printf("%s\n", (char *) last->data);
+		last = last->prev;
+	}
 
 	free_list(head);
 }

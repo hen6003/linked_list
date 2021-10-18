@@ -31,6 +31,21 @@ item *get_first(item *head)
 	return first;
 }
 
+item *get_index(item *head, int index)
+{
+	item *i = head;
+
+	for (int n = 0; n < index; n++)
+	{
+		if (i->next == NULL)
+			return NULL;
+
+		i = i->next;
+	}
+
+	return i;
+}
+
 //=== Insert ===
 // Start a list
 item *create_head()
@@ -59,7 +74,6 @@ item *insert_item(item *head, void *data)
 	return i;
 }
 
-
 //=== Free ===
 // Free a single item
 void free_item(item *i)
@@ -80,19 +94,20 @@ void free_list(item *head)
 	}
 }
 
-//=== Data ===
-// Returns data if exists at position, else NULL
-void *get_data(item *head, int index)
+void free_item_index(item *head, int index)
 {
-	item *i = head;
+	// Find item
+	item *i = get_index(head, index);
 
-	for (int n = 0; n < index; n++)
+	// Link surrounding items together
+	if (i->next != NULL)
 	{
-		if (i->next == NULL)
-			return NULL;
-
-		i = i->next;
+		i->prev->next = i->next;
+		i->next->prev = i->prev;
 	}
+	else
+		i->prev->next = NULL;
 
-	return i->data;
+	// Free the unlinked item
+	free_item(i);
 }
