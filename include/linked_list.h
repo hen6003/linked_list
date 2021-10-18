@@ -11,6 +11,8 @@ typedef struct item
 	struct item *prev;
 } item;
 
+#ifdef LINKED_LIST_IMPLEMENTATION
+
 //=== Get items ===
 // Get last item in the list
 item *get_last(item *head)
@@ -114,4 +116,5 @@ void free_item_index(item *head, int index)
 	// Free the unlinked item
 	free_item(i);
 }
+#endif // LINKED_LIST_IMPLEMENTATION
 #endif // LINKED_LIST_H 
