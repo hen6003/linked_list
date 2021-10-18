@@ -84,14 +84,14 @@ void free_item(item *i)
 // Free an entire list
 void free_list(item *head)
 {
-	item *last = get_last(head);
-	item *next = head;
+	item *last = head;
 
-	while (next->prev != NULL)
+	while (last->next != NULL)
 	{
-		next = next->prev;
-		free(next);
+		last = last->next;
+		free(last->prev);
 	}
+	free(last);
 }
 
 void free_item_index(item *head, int index)
