@@ -52,7 +52,7 @@ item *create_head()
 {
 	item *i = malloc(sizeof(struct item));
 	
-	i->data = 0;
+	i->data = NULL;
 	i->next = NULL;
 	i->prev = NULL;
 
